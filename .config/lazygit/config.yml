@@ -1,0 +1,12 @@
+git:
+  # Config relating to committing
+  commit:
+    # If true, pass '--signoff' flag when committing
+    signOff: true
+
+refresher:
+  fetchInterval: 3600
+
+keybinding:
+  commits:
+    moveUpCommit: <c-u>

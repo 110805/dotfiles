@@ -1,0 +1,65 @@
+[user]
+	name = Ben Zong-You Xie
+	email = ben717@andestech.com
+	# signingkey = 9EFEED0F30FEB0B5
+
+[core]
+	editor = nvim
+	abbrev = 12
+	pager = delta
+
+[pretty]
+	fixes = Fixes: %h (\"%s\")
+
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	sw = switch
+	rb = rebase
+	cp = cherry-pick
+	amend = "commit --amend --no-edit"
+	fixup = "!f() { \
+			[ -z \"$1\" ]; \
+			git commit --fixup=\"$1\" && \
+			git -c sequence.editor=: rebase -i --autostash --autosquash \"$1~1\"; \
+		      }; f"
+	oneline = "!f() { \
+			  [ -z \"$1\" ]; \
+			  git log --oneline -\"$1\"; \
+		        }; f" 
+
+[color]
+	ui = auto
+
+# [sendemail]
+	# smtpEncryption = None
+	# smtpServer = atcpcs31.andestech.com
+	# smtpUser = ben717
+	# smtpServerPort = 25
+	# smtpPass = 
+
+[http]
+	proxy = http://10.0.1.18:3128
+[https]
+	proxy = http://10.0.1.18:3128
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+    side-by-side = true
+
+[merger]
+    conflictStyle = zdiff3
+
+[patatt]
+    signingkey = ed25519:20260120
+    selector = 20260120
+
+[b4]
+    send-endpoint-web = https://lkml.kernel.org/_b4_submit
+
