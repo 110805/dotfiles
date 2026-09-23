@@ -1,3 +1,4 @@
 *.bak
 .zshrc.local
 .gitconfig.local
+.config/atuin/atuin-receipt.json

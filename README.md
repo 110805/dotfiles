@@ -2,11 +2,27 @@
 
 Configs for zsh, neovim, yazi, zellij, claude, git, lazygit, atuin.
 
-## Install
+## New machine
+
+Install Claude Code and log in on first launch:
 
 ```sh
-git clone git@github.com-110805:110805/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+curl -fsSL https://claude.ai/install.sh | bash
+claude
+```
+
+Then give it this prompt:
+
+> Set up this machine from my private dotfiles repo `git@github.com:110805/dotfiles.git`.
+> Create an SSH key and show me the public key so I can add it on github.com,
+> clone the repo to `~/dotfiles`, then follow its SETUP.md.
+
+[SETUP.md](SETUP.md) lists every tool these configs expect and where it comes from,
+links the dotfiles, and ends with the steps that need you (`chsh`, `atuin login`, secrets).
+
+## Linking only
+
+```sh
 ./install.sh            # symlinks into $HOME; refuses to clobber existing files
 ./install.sh --adopt    # ...or move existing files to ~/.dotfiles-backup-<stamp> first
 ```
@@ -23,32 +39,7 @@ and `sendemail.smtpPass`.
 
 ## Binaries these configs expect
 
-Not installed by this repo. Install to `~/.local/bin` (already on `PATH` via `.zshrc`).
-
-Required:
-
-| Tool | Notes |
-|---|---|
-| zsh + oh-my-zsh | theme `amuse`, plugins `colored-man-pages` `zoxide` |
-| neovim | `.config/nvim` is LazyVim; plugins self-install on first launch |
-| yazi (+ `ya`) | |
-| zellij | |
-| claude | `curl -fsSL https://claude.ai/install.sh \| bash` |
-| atuin | `.zshrc` sources it; Claude hooks call `atuin hook claude-code` |
-| jq | required by the zellij hook and the Claude statusline |
-| zoxide | oh-my-zsh `zoxide` plugin |
-| delta | `.gitconfig` sets it as pager; git diff fails without it |
-
-Optional: fzf, lazygit, difft, rg, fd, bat, node.
+Listed in [SETUP.md](SETUP.md), installed to `~/.local/bin` (on `PATH` via `.zshrc`).
 
 `.zshrc` guards `cargo`/`atuin` sourcing and the Andes toolchain `PATH`, so a shell
 still starts cleanly when those are absent.
-
-## After install on a new machine
-
-```sh
-claude login           # ~/.claude/.credentials.json is not tracked
-atuin login            # syncs history rather than copying ~/.local/share/atuin
-```
-
-Then add the secrets listed above to `~/.zshrc.local` and `~/.gitconfig.local`.
