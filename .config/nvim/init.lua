@@ -25,4 +25,7 @@ vim.g.clipboard = {
   },
 }
 
-vim.cmd('colorscheme github_dark_dimmed')
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+vim.cmd('colorscheme vscode')

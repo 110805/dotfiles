@@ -28,17 +28,18 @@
 	oneline = "!f() { \
 			  [ -z \"$1\" ]; \
 			  git log --oneline -\"$1\"; \
-		        }; f" 
+		        }; f"
 
 [color]
 	ui = auto
 
-# [sendemail]
-	# smtpEncryption = None
-	# smtpServer = atcpcs31.andestech.com
-	# smtpUser = ben717
-	# smtpServerPort = 25
-	# smtpPass = 
+# "b4 send --use-web-endpoint" to skip the SMTP server configuration
+[sendemail]
+	smtpEncryption = none
+	smtpServer = smtp.andestech.com
+	smtpUser = ben717@andestech.com
+	smtpServerPort = 25
+	# smtpPass lives in ~/.gitconfig.local (untracked)
 
 [http]
 	proxy = http://10.0.1.18:3128
@@ -63,3 +64,6 @@
 [b4]
     send-endpoint-web = https://lkml.kernel.org/_b4_submit
 
+# Machine-local settings and secrets (not tracked in dotfiles)
+[include]
+	path = ~/.gitconfig.local

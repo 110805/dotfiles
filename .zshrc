@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="bira"
+ZSH_THEME="amuse"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -108,6 +108,7 @@ export LANG=en_US.UTF-8
 export EDITOR='nvim'
 export GPG_TTY=$(tty)
 
+alias vi="nvim"
 alias lg="lazygit"
 alias fd="fd -u -i"
 alias pw="git-pw"
@@ -122,18 +123,28 @@ function y() {
 }
 
 # Export Rust toolchain
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # Export the local bin
-export PATH=/work1/home/ben717/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # Export Andes toolchain
 export ARCH=riscv
 export CROSS_COMPILE=riscv64-linux-
-export PATH=/NOBACKUP/sqa3/NFSTest/build-ast541/build-toolchain/linux/nds64le-linux-glibc-v5d/bin:$PATH
+ANDES_TOOLCHAIN=/NOBACKUP/sqa3/NFSTest/build-ast550/build-toolchain/linux/nds64le-linux-glibc-v5d/bin
+[ -d "$ANDES_TOOLCHAIN" ] && export PATH="$ANDES_TOOLCHAIN:$PATH"
 
 # b4
 alias b4="$HOME/b4/b4.sh"
 
 # Deduplicate PATH entries (keeps first occurrence)
 typeset -U path
+
+# atuin
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
+
+# Bind ctrl-r but not up arrow
+command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
+
+# Machine-local settings and secrets (not tracked in dotfiles)
+[ -f "$HOME/.zshrc.local" ] && . "$HOME/.zshrc.local"
