@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# Export the local bin (before oh-my-zsh, so plugins like zoxide find it)
+export PATH=$HOME/.local/bin:$PATH
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -124,9 +127,6 @@ function y() {
 
 # Export Rust toolchain
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-
-# Export the local bin
-export PATH=$HOME/.local/bin:$PATH
 
 # Export Andes toolchain
 export ARCH=riscv
