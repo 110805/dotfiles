@@ -1,12 +1,8 @@
 # Global user preferences
 
 ## Commits
-- When creating or amending a git commit, always append an assistance trailer identifying the model, in this exact format (one blank line separating it from the body, on the same footer block as Signed-off-by):
-
-  `Assisted-by: Claude:<model>`
-
-  where `<model>` is the current model's short id (e.g. `claude-4.6-opus`, `claude-4.6-sonnet`, `claude-4.5-haiku`). For the Opus 4.6 model with 1M context (`claude-opus-4-6[1m]`), use `claude-4.6-opus`.
-- Preserve other trailers (Signed-off-by, Co-Authored-By, Reviewed-by, etc.) exactly as they appear; `Assisted-by` goes at the end of the trailer block.
+- Do not add an `Assisted-by:` trailer to commits.
+- Preserve other trailers (Signed-off-by, Co-Authored-By, Reviewed-by, etc.) exactly as they appear.
 - Default to a subject line only. Add a body only when the *why* isn't recoverable from the diff: a non-obvious constraint, a bug being worked around, an approach rejected for a reason.
 - Subject: <=50 chars, imperative, no trailing period.
 - When a body is warranted, briefly state why the change was needed and what it does. No file-by-file or function-by-function summary, no bullet lists, and no invented `Changes:` / `Testing:` / `Impact:` sections unless the repo's own history uses them.
